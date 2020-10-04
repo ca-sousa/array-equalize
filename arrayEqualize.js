@@ -1,7 +1,6 @@
 // PRIMEIRA ETAPA:
-// X/N que são pixels;
-// K que é o nivel de luminosidade. 
-// Tem uma tabela que é o nivel de luminosidade por pixel.
+// N que são numero pixels;
+// K que é o nivel de luminosidade. = array
 
 // SEGUNDA ETAPA:
 // ** L é o maior valor da tabela.
@@ -16,4 +15,33 @@
 
 function start() {
     array =  [0, 0, 4, 6, 8, 8, 4, 7, 8, 9, 9, 4, 3, 2, 3, 8, 2, 2, 1, 0]
+    
+    equalize(array);
 }
+
+function equalize(array) {
+    
+    const n = array.length;
+    const l = 10;
+
+    const hk = [];
+    for (let i =0 ; i < l ; i++) {
+        hk.push(0)
+    }
+    for (let i = 0; i < array.length; i++){
+        for (let lugark = 0; lugark < hk.length; lugark ++){
+            if(array[i] == lugark) {
+                hk[lugark] ++;
+            }
+        }
+    }
+
+    const hak = [];
+    for (let i =0 ; i < l ; i++) {
+        hak.push(0)
+    }
+
+    console.log(hak)
+}
+
+start();
