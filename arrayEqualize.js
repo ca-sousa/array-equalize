@@ -1,20 +1,20 @@
 // PRIMEIRA ETAPA:
 // N que são numero pixels;
-// K que é o nivel de luminosidade. = array
+// K (array) que é o nivel de luminosidade.
 
 // SEGUNDA ETAPA:
 // L quantos valores diferentes em k (array)
 // H(k) quantas vezes o K = x se repete.
 // Ha(k) soma o H(k) + H(k) da proxima coluna (meio que na diagonal)  = tendencia de dar o n de pixel.
 // pk= Ha(k)/N
-// k'=9*pk
+// k'(k_)=9*pk
 
 // TERCEIRA ETAPA:
 // Os pixels que tinham o valor de k passam a ter o valor de k'.
 // g(x) = k' -> fazemos a substituição de k por k'
 
 function start() {
-    // put the array that you want to change;
+    // coloque o array que deseja alterar;
     array = [0, 0, 4, 6, 8, 8, 4, 7, 8, 9, 9, 4, 3, 2, 3, 8, 2, 2, 1, 0];
     
     console.log(equalize(array));
@@ -22,7 +22,7 @@ function start() {
 
 function equalize(array) {
     const n = array.length;
-    
+
     const total = [];
     for (let i = 0; i < array.length; i++) {
         for (let dif = 0; dif < array.length; dif ++) {
