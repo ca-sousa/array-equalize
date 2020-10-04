@@ -16,7 +16,7 @@
 function start() {
     array = [0, 0, 4, 6, 8, 8, 4, 7, 8, 9, 9, 4, 3, 2, 3, 8, 2, 2, 1, 0];
     
-    equalize(array);
+    console.log(equalize(array));
 }
 
 function equalize(array) {
@@ -54,14 +54,23 @@ function equalize(array) {
         pk.push(count);
     }
 
-    const k = []
+    const k_ = []
     for (let i = 0; i < pk.length; i++) {
         let count = 9*pk[i]
         value = Math.round(count)
-        k.push(value);
+        k_.push(value);
     }
 
-    console.log(k)
+    const equalizedArray = []
+    for (let i = 0; i < array.length; i++){
+        for (let ij = 0; ij < k_.length; ij++){
+            let value = array[i];
+            if (value == ij) {
+                equalizedArray.push(k_[ij])
+            }
+        }
+    }
+    return equalizedArray;
 }
 
 start();
