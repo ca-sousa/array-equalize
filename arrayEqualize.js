@@ -12,6 +12,14 @@
 // TERCEIRA ETAPA:
 // Os pixels que tinham o valor de k passam a ter o valor de k'.
 // g(x) = k' -> fazemos a substituição de k por k'
+let n;
+let total = [];
+let l;
+let hk = [];
+let hak = [];
+let pk = [];
+let k_ = []
+let equalizedArray = []
 
 function start() {
     // coloque o array que deseja alterar;
@@ -21,9 +29,24 @@ function start() {
 }
 
 function equalize(array) {
-    const n = array.length;
+    console.log(calculateL(array));
+    console.log(calculateHK(array));
+    console.log(calculateHAK());
+    console.log(calculatePK(array));
+    console.log(calculateK_());
+    
+    for (let i = 0; i < array.length; i++){
+        for (let ij = 0; ij < k_.length; ij++){
+            let value = array[i];
+            if (value == ij) {
+                equalizedArray.push(k_[ij])
+            }
+        }
+    }
+    return equalizedArray;
+}
 
-    const total = [];
+function calculateL() {
     for (let i = 0; i < array.length; i++) {
         for (let dif = 0; dif < array.length; dif ++) {
             if(array[i] == dif) {
@@ -31,9 +54,11 @@ function equalize(array) {
             }
         }
     }
-    const l = total.length;
+    l = total.length;
+    return l;
+}
 
-    const hk = [];
+function calculateHK(array){
     for (let i = 0; i < l; i++) {
         hk.push(0);
     }
@@ -44,8 +69,10 @@ function equalize(array) {
             }
         }
     }
+    return hk;
+}
 
-    const hak = [];
+function calculateHAK(){
     for (let i = 0; i < l; i++) {
         hak.push(0);
     }
@@ -56,30 +83,25 @@ function equalize(array) {
             hak[i] = hak[i-1] + hk[i];
         }
     }
+    return hak;
+}
 
-    const pk = [];
+function calculatePK(array){
+    n = array.length;
     for (let i = 0; i < hak.length; i++) {
         let count = hak[i]/n
         pk.push(count);
     }
+    return pk;
+}
 
-    const k_ = []
+function calculateK_(){
     for (let i = 0; i < pk.length; i++) {
         let count = 9*pk[i]
         value = Math.round(count)
         k_.push(value);
     }
-
-    const equalizedArray = []
-    for (let i = 0; i < array.length; i++){
-        for (let ij = 0; ij < k_.length; ij++){
-            let value = array[i];
-            if (value == ij) {
-                equalizedArray.push(k_[ij])
-            }
-        }
-    }
-    return equalizedArray;
+    return k_;
 }
 
 start();
