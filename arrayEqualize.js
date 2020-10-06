@@ -12,29 +12,18 @@
 // TERCEIRA ETAPA:
 // Os pixels que tinham o valor de k passam a ter o valor de k'.
 // g(x) = k' -> fazemos a substituição de k por k'
-let n;
-let total = [];
-let l;
-let hk = [];
-let hak = [];
-let pk = [];
-let k_ = []
-let equalizedArray = []
 
 function start() {
     // coloque o array que deseja alterar;
     array = [0, 0, 4, 6, 8, 8, 4, 7, 8, 9, 9, 4, 3, 2, 3, 8, 2, 2, 1, 0];
     
-    console.log(equalize(array));
+    let equalizedArray = equalize(array);
+    console.log(equalizedArray);
 }
 
 function equalize(array) {
-    console.log(calculateL(array));
-    console.log(calculateHK(array));
-    console.log(calculateHAK());
-    console.log(calculatePK(array));
-    console.log(calculateK_());
-    
+    let equalizedArray = [];
+    let k_ = calculateK_(array);
     for (let i = 0; i < array.length; i++){
         for (let ij = 0; ij < k_.length; ij++){
             let value = array[i];
@@ -46,7 +35,10 @@ function equalize(array) {
     return equalizedArray;
 }
 
-function calculateL() {
+function calculateL(array) {
+    let total = [];
+    let l;
+
     for (let i = 0; i < array.length; i++) {
         for (let dif = 0; dif < array.length; dif ++) {
             if(array[i] == dif) {
@@ -59,6 +51,9 @@ function calculateL() {
 }
 
 function calculateHK(array){
+    let hk = [];
+    let l = calculateL(array);
+
     for (let i = 0; i < l; i++) {
         hk.push(0);
     }
@@ -72,7 +67,11 @@ function calculateHK(array){
     return hk;
 }
 
-function calculateHAK(){
+function calculateHAK(array){
+    let hak = [];
+    let l = calculateL(array);
+    let hk = calculateHK(array);
+
     for (let i = 0; i < l; i++) {
         hak.push(0);
     }
@@ -87,6 +86,10 @@ function calculateHAK(){
 }
 
 function calculatePK(array){
+    let pk = [];
+    let n;
+    let hak = calculateHAK(array);
+
     n = array.length;
     for (let i = 0; i < hak.length; i++) {
         let count = hak[i]/n
@@ -95,7 +98,10 @@ function calculatePK(array){
     return pk;
 }
 
-function calculateK_(){
+function calculateK_(array){
+    let k_ = []
+    let pk = calculatePK(array);
+
     for (let i = 0; i < pk.length; i++) {
         let count = 9*pk[i]
         value = Math.round(count)
